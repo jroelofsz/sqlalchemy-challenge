@@ -17,6 +17,9 @@ Once cloned, you may need to install some dependencies:
 
 1. SQLAlchemy: `pip install SQLAlchemy`
 2. Flask: `pip install Flask`
+3. Matplotlib: `pip install matplotlib`
+4. Pandas: `pip install pandas`
+
 
 To view the analysis, run the `climate_analysis.ipynb`. If you would like to test the API in your environment, run the `app.py` file from the command line in your environment with the dependencies installed.
 

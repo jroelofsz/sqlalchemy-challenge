@@ -27,6 +27,11 @@ Measurement = Base.classes.measurement
 # Create our session (link) from Python to the DB
 session = Session(engine)
 
+
+### GLOBAL VARIABLES ###
+fields = [Measurement.station,func.min(Measurement.tobs),func.max(Measurement.tobs),func.avg(Measurement.tobs)]
+
+
 #################################################
 # Flask Setup
 #################################################
@@ -83,8 +88,6 @@ def stations():
 #route that returns tobs data for most active station
 @app.route('/api/v1.0/tobs')
 def tobs():
-    #set fields for selection
-    fields = [Measurement.station,func.min(Measurement.tobs),func.max(Measurement.tobs),func.avg(Measurement.tobs)]
     
     #find the most active station by count of observations
     mostActiveStation = session.query(*fields).\
@@ -123,8 +126,6 @@ def dynamicTobs(start_date):
     Returns:
         jsonify(tobsData): JSON data of Station, Min, Avg, and Max tobs
     """
-    #set fields for selection
-    fields = [Measurement.station,func.min(Measurement.tobs),func.max(Measurement.tobs),func.avg(Measurement.tobs)]
     
     #find the most active station by count of observations
     mostActiveStation = session.query(*fields).\
@@ -168,8 +169,6 @@ def dynamicTobsTwoDates(start_date, end_date):
     Returns:
         jsonify(tobsData): Returns in JSON format the Station, Min Temp, Avg Temp, and Max Temp
     """
-      #set fields for selection
-    fields = [Measurement.station,func.min(Measurement.tobs),func.max(Measurement.tobs),func.avg(Measurement.tobs)]
     
     #find the most active station by count of observations
     mostActiveStation = session.query(*fields).\
